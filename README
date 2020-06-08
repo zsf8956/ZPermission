@@ -1,0 +1,26 @@
+
+1、在 Activity 初始化 PermissionHelper，并实现 PermissionInterface 接口
+
+2、getPermissions 接口为设置所需权限
+
+    @Override
+        public String[] getPermissions() {
+            return new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            };
+        }
+
+
+3、在 Activity 重写 onRequestPermissionsResult 方法
+
+    @Override
+        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+            if (permissionHelper.requestPermissionsResult(requestCode,permissions,grantResults)){
+                return;
+            }
+
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        }
+
